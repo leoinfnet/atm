@@ -1,0 +1,52 @@
+### Criar uma nova conta (com dados manuais)
+GET http://localhost:9090/contas
+Content-Type: application/json
+
+{
+  "numero": "9999",
+  "titular": "João da Silva",
+  "senha": "senha123"
+}
+###
+
+POST http://localhost:9090/contas
+Content-Type: application/json
+
+{
+  "numero": "9999",
+  "titular": "João da Silva",
+  "senha": "senha123"
+}
+###
+
+### Depositar 100.00 na conta 9999
+POST http://localhost:9090/contas/9999/depositar
+Content-Type: application/json
+
+{
+  "valor": 100.00
+}
+
+###
+
+### Ver saldo da conta 9999
+GET http://localhost:9090/contas/9999/saldo
+
+###
+
+### Ver saldo de uma conta inexistente (erro esperado)
+GET http://localhost:9090/contas/0000/saldo
+
+###
+
+### Depositar com JSON malformado (erro esperado)
+POST http://localhost:9090/contas/9999/depositar
+Content-Type: application/json
+
+{
+  "valor": "cem reais"
+}
+
+###
+### Listar todas as contas
+GET http://localhost:9090/contas
